@@ -23,12 +23,10 @@ import static android.content.ContentValues.TAG;
  */
 
 public class FragmentSalon extends Fragment {
-
-
-
     NavigationView navigation;
     DrawerLayout drawer;
     Button salonButton;
+    FragmentTransaction ft;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          View v = inflater.inflate(R.layout.salonclass_fragment,container,false);
@@ -42,6 +40,38 @@ public class FragmentSalon extends Fragment {
                      public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         item.setChecked(true);
                         drawer.closeDrawers();
+
+                        switch(item.toString()){
+                            case "Client":
+                                FragmentClient client = new FragmentClient();
+                                ft = getFragmentManager().beginTransaction();
+                                ft.replace(R.id.fragmentLayout,client);
+                                ft.addToBackStack(null);
+                                ft.commit();
+                                break;
+                            case "Inventory":
+                                FragmentInventory inventory = new FragmentInventory();
+                                ft = getFragmentManager().beginTransaction();
+                                ft.replace(R.id.fragmentLayout,inventory);
+                                ft.addToBackStack(null);
+                                ft.commit();
+                                break;
+                            case "Calendar":
+                                FragmentCalendar calendar = new FragmentCalendar();
+                                ft = getFragmentManager().beginTransaction();
+                                ft.replace(R.id.calendarFragment,calendar);
+                                ft.addToBackStack(null);
+                                ft.commit();
+                                break;
+                            case "Settings":
+                                FragmentSettings settings = new FragmentSettings();
+                                ft = getFragmentManager().beginTransaction();
+                                ft.replace(R.id.calendarFragment,settings);
+                                ft.addToBackStack(null);
+                                ft.commit();
+                                break;
+                        }
+                        Log.d(TAG,"Item: " + item.toString());
                         return true;
                      }
                  }
@@ -53,6 +83,7 @@ public class FragmentSalon extends Fragment {
         @Override
         public void onClick(View v){
             drawer.openDrawer(Gravity.START);
+
 
 
         }};

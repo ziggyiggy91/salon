@@ -12,13 +12,13 @@ import android.view.ViewGroup;
  * Created by Iggy on 7/16/2018.
  */
 
-public class FragmentClient extends Fragment {
+public class FragmentCalendar extends Fragment{
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.client_fragment,container, false);
+         View v = inflater.inflate(R.layout.fragment_calendar,container,false);
 
-        return v;
+         return v;
     }
 }

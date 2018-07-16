@@ -12,13 +12,14 @@ import android.view.ViewGroup;
  * Created by Iggy on 7/16/2018.
  */
 
-public class FragmentClient extends Fragment {
+public class FragmentInventory extends Fragment {
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.client_fragment,container, false);
-
+        View v = inflater.inflate(R.layout.inventory_fragment,container,false);
         return v;
     }
+
+
+
 }
