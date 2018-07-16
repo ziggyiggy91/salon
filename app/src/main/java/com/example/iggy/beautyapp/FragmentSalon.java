@@ -45,28 +45,28 @@ public class FragmentSalon extends Fragment {
                             case "Client":
                                 FragmentClient client = new FragmentClient();
                                 ft = getFragmentManager().beginTransaction();
-                                ft.replace(R.id.fragmentLayout,client);
+                                ft.replace(R.id.salonClassLayout,client);
                                 ft.addToBackStack(null);
                                 ft.commit();
                                 break;
                             case "Inventory":
                                 FragmentInventory inventory = new FragmentInventory();
                                 ft = getFragmentManager().beginTransaction();
-                                ft.replace(R.id.fragmentLayout,inventory);
+                                ft.replace(R.id.salonClassLayout,inventory);
                                 ft.addToBackStack(null);
                                 ft.commit();
                                 break;
                             case "Calendar":
                                 FragmentCalendar calendar = new FragmentCalendar();
                                 ft = getFragmentManager().beginTransaction();
-                                ft.replace(R.id.calendarFragment,calendar);
+                                ft.replace(R.id.salonClassLayout,calendar);
                                 ft.addToBackStack(null);
                                 ft.commit();
                                 break;
                             case "Settings":
                                 FragmentSettings settings = new FragmentSettings();
                                 ft = getFragmentManager().beginTransaction();
-                                ft.replace(R.id.calendarFragment,settings);
+                                ft.replace(R.id.salonClassLayout,settings);
                                 ft.addToBackStack(null);
                                 ft.commit();
                                 break;
