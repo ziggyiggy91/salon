@@ -57,7 +57,9 @@ public class FragmentLogin extends Fragment {
     public void onStart() {
         super.onStart();
         Log.d(TAG,"onStart()");
+        ClassSQLite sql = new ClassSQLite(getContext());
 
+        sql.query("create table newTable ( id varchar(255));");
     }
 
     @Override

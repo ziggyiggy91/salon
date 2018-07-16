@@ -1,5 +1,6 @@
 package com.example.iggy.beautyapp;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,6 +37,9 @@ public class FragmentClient extends Fragment {
     public void onStart() {
         super.onStart();
         Log.d(TAG,"onStart()");
+
+      //  Cursor cursor = db.query(table,column,null,null,null,null,null);
+
 
     }
 

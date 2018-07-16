@@ -16,17 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by Iggy on 7/16/2018.
  */
 
-public class FragmentSalon extends Fragment {
+public class FragmentSalon extends Fragment  {
     NavigationView navigation;
     DrawerLayout drawer;
     Button salonButton;
     FragmentTransaction ft;
+    String TAG = "FragmentSalon";
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          View v = inflater.inflate(R.layout.salonclass_fragment,container,false);
@@ -43,12 +42,13 @@ public class FragmentSalon extends Fragment {
 
                         switch(item.toString()){
                             case "Client":
-                                FragmentClient client = new FragmentClient();
-                                ft = getFragmentManager().beginTransaction();
-                                ft.replace(R.id.salonClassLayout,client);
-                                ft.addToBackStack(null);
-                                ft.commit();
-                                break;
+                                    FragmentClient client = new FragmentClient();
+                                    ft = getFragmentManager().beginTransaction();
+                                    ft.replace(R.id.salonClassLayout, client);
+                                    ft.addToBackStack(null);
+                                    ft.commit();
+
+                                 break;
                             case "Inventory":
                                 FragmentInventory inventory = new FragmentInventory();
                                 ft = getFragmentManager().beginTransaction();
@@ -78,6 +78,7 @@ public class FragmentSalon extends Fragment {
          );
         return v;
     }
+
 
     private View.OnClickListener salonButtonListener = new View.OnClickListener(){
         @Override

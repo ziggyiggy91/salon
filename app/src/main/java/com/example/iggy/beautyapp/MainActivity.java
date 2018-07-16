@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+// this imports all your items from your layout
 /**
  * Created by Iggy on 7/16/2018.
  */
