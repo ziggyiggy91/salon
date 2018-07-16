@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param savedInstanceState
      */
-
     //Application entering state
     @Override
     protected void onCreate(Bundle savedInstanceState) {
