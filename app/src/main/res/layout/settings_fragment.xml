@@ -13,4 +13,11 @@
         android:fontFamily="serif"
         android:text="Settings"
         android:textSize="30sp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/settingText"
+        android:layout_marginTop="13dp" />
 </android.widget.RelativeLayout>

@@ -1,8 +1,10 @@
 package com.example.iggy.beautyapp;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -18,12 +26,21 @@ import android.view.ViewGroup;
  */
 
 public class FragmentClient extends Fragment {
-    String [] columnName = {};
+    String [] columnName = {"example","example2","example3"};
+    ArrayList<String> data;
+    ArrayList<String> data2;
+
     String TAG = "FragmentClient";
+    ListView listView;
+    //ArrayAdapter<String> adapter;
+    //ArrayAdapter<String> adapter2;
+    IggyAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.client_fragment,container, false);
+        listView = v.findViewById(R.id.listClient);
 
         return v;
     }
@@ -38,8 +55,11 @@ public class FragmentClient extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG,"onStart()");
+        Log.d(TAG, "onStart()");
         Cursor cursor;
+        data = new ArrayList<>();
+        data2 = new ArrayList<>();
+        int i = 0;
         String[] mProjection = new String[]
                 {
                         ContactsContract.Profile._ID,
@@ -47,27 +67,55 @@ public class FragmentClient extends Fragment {
                         ContactsContract.Profile.LOOKUP_KEY,
                         ContactsContract.Profile.PHOTO_THUMBNAIL_URI
                 };
-
-
+        ContentResolver cr;
+        cr = getActivity().getContentResolver();
         cursor = getActivity().getContentResolver().query(
-                ContactsContract.Profile.CONTENT_URI,
-                mProjection ,
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                null,
                 null,
                 null,
                 null);
 
 
+        while (cursor.moveToNext()) {
+                 Log.d("cursor", "cursor data : " + cursor.getColumnName(i));
+            //for(int i = 0; i < columnName.length; i++) {
+            String itemId = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+             String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            //Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                  //  null, null, null);
+           // String number = phones.getString(phones.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-        while(cursor.moveToNext()) {
-            columnName = cursor.getColumnNames();
+            //while(phones.moveToNext()){
+              //  String number = phones.getString(phones.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            Log.d(TAG, "number: " + number);
 
-            for(int i = 0; i < columnName.length; i++) {
-                String itemId = cursor.getString(cursor.getColumnIndexOrThrow(""+columnName[i] +""));
+            //}
             Log.d(TAG, "item: " + itemId);
-            }
-        }
-      //  Cursor cursor = db.query(table,column,null,null,null,null,null);
+            data.add(number);
+            data2.add(itemId);
 
+             i++;
+            //}
+        }
+        adapter = new IggyAdapter(getActivity(),data,data2);
+        //adapter = new ArrayAdapter<>(getContext(),R.layout.scrollclient_layout,R.id.dictWord,data);
+        //adapter2 = new ArrayAdapter<>(getContext(),R.layout.scrollclient_layout,R.id.locale,data2);
+
+        //  Cursor cursor = db.query(table,column,null,null,null,null,null);
+        //listView.setAdapter(adapter);
+        //listView.setAdapter(adapter2);
+
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+            int position, long id) {
+                Toast.makeText(getContext(), "You Clicked at " + data.get(position), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 
